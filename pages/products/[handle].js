@@ -4,12 +4,13 @@ import {
   products,
   variationChoices
 } from "../../api/products";
+import { addItem } from "../../api/cart";
 
 function capitalize(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-export default function ProductPage({ handle }) {
+export default function ProductPage({ handle, cart, setCart }) {
   const attributes = useMemo(() => {
     return productVariation[handle].reduce((acc, variationKey) => {
       acc[variationKey] = variationChoices[variationKey];
@@ -26,6 +27,10 @@ export default function ProductPage({ handle }) {
     }));
   }
 
+  function addToCart() {
+    setCart(addItem(cart, handle, chosenVariant));
+  }
+
   return (
     <>
       <h1>{capitalize(handle)} product page</h1>
@@ -38,6 +43,7 @@ export default function ProductPage({ handle }) {
             (attributeValue) => (
               <label key={attributeValue} style={{ lineHeight: 2 }}>
                 <input
+                  style={{cursor: 'pointer'}}
                   checked={chosenVariant[attributeKey] === attributeValue}
                   type="radio"
                   name={attributeKey}
@@ -65,17 +71,19 @@ export default function ProductPage({ handle }) {
             </div>
           );
         })}
-      </div>
-      <div style={{ textAlign: "center", marginTop: "2em" }}>
-        <button
-          style={{
-            background: "transparent",
-            padding: "1em 2em",
-            border: "1px solid gray"
-          }}
-        >
-          Add To Cart
-        </button>
+        </div>
+        <div style={{ textAlign: "center", marginTop: "2em" }}>
+          <button
+            onClick={() => addToCart()}
+            style={{
+              background: "transparent",
+              padding: "1em 2em",
+              border: "1px solid gray",
+              cursor: "pointer"
+            }}
+          >
+            Add To Cart
+          </button>
       </div>
     </>
   );

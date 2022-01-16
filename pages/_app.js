@@ -12,7 +12,7 @@ export default function MyApp({ Component, pageProps }) {
         <Nav />
         <CartDebug cart={cart} allowChanges={true} setCart={setCart} />
         <div style={{ width: "calc(100% - 18.5em)" }}>
-          <Component {...pageProps} />
+          <Component {...pageProps} cart={cart} setCart={setCart}/>
         </div>
       </CartContext.Provider>
     </div>

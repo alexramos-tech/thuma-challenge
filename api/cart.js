@@ -33,3 +33,9 @@ export function removeItem(cart, index) {
   cartWithOutItem.splice(index, 1);
   return cartWithOutItem;
 }
+
+export function addItem(cart, productType, variation) {
+  const newItem = productConstructors[productType](variation);
+  const cartWithNewItem = [...cart, newItem];
+  return cartWithNewItem;
+}
