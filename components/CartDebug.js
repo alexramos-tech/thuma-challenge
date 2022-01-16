@@ -1,4 +1,5 @@
-import { getRandomCart } from "../api/cart";
+import { getRandomCart, removeItem } from "../api/cart";
+import CloseButton from "./CloseButton";
 
 export default function CartDebug({ cart, setCart }) {
   return (
@@ -27,9 +28,12 @@ export default function CartDebug({ cart, setCart }) {
         ) : (
           cart.map((cartItem, index) => (
             <li key={index} suppressHydrationWarning>
-              {`${cartItem.name} -- ${Object.keys(cartItem.variation)
-                .map((key) => cartItem.variation[key])
-                .join(" + ")} `}
+              <div>
+                {`${cartItem.name} -- ${Object.keys(cartItem.variation)
+                  .map((key) => cartItem.variation[key])
+                  .join(" + ")} `}
+                <CloseButton onClick={() => setCart(removeItem(cart, index))} />      
+              </div>
             </li>
           ))
         )}
@@ -41,7 +45,8 @@ export default function CartDebug({ cart, setCart }) {
           style={{
             background: "transparent",
             padding: "1em 2em",
-            border: "1px solid gray"
+            border: "1px solid gray",
+            cursor: "pointer"
           }}
           onClick={() => setCart(getRandomCart())}
         >

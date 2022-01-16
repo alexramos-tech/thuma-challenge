@@ -27,3 +27,9 @@ export function getRandomCart() {
   const cartSize = rand % 3 === 0 ? 2 : rand % 2 === 0 ? 1 : 0;
   return getCartOfSize(cartSize);
 }
+
+export function removeItem(cart, index) {
+  const cartWithOutItem = [...cart];
+  cartWithOutItem.splice(index, 1);
+  return cartWithOutItem;
+}
