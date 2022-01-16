@@ -6,7 +6,7 @@ export const variationChoices = {
   size: sizes
 };
 
-export function makeBed({ color, size }) {
+function makeBed({ color, size }) {
   return {
     name: "bed",
     variation: {
@@ -16,7 +16,7 @@ export function makeBed({ color, size }) {
   };
 }
 
-export function makeMattress({ size }) {
+function makeMattress({ size }) {
   return {
     name: "mattress",
     variation: {
@@ -25,14 +25,25 @@ export function makeMattress({ size }) {
   };
 }
 
-export const products = ["bed", "mattress"];
+function makeNightstand({ color }) {
+  return {
+    name: "nightstand",
+    variation: {
+      color
+    }
+  };
+}
+
+export const products = ["bed", "mattress", "nightstand"];
 
 export const productConstructors = {
   bed: makeBed,
-  mattress: makeMattress
+  mattress: makeMattress,
+  nightstand: makeNightstand
 };
 
 export const productVariation = {
   bed: ["color", "size"],
-  mattress: ["size"]
+  mattress: ["size"],
+  nightstand: ["color"]
 };
