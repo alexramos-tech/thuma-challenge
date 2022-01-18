@@ -1,7 +1,27 @@
-import { productConstructors, variationChoices } from "./products";
+import ProductsApi from "./products";
 
+const { variationChoices, productConstructors } = ProductsApi;
 const bedSizes = variationChoices.size;
 const bedColors = variationChoices.color;
+
+const getRandomInt = (max) => {
+  return Math.floor(Math.random() * max);
+};
+
+const getRandomItem = () => {
+  return productConstructors.bed({
+    size: bedSizes[getRandomInt(bedSizes.length)],
+    color: bedColors[getRandomInt(bedColors.length)]
+  });
+};
+
+const getCartOfSize = (size) => {
+  let cart = [];
+  for (let i = 0; i < size; i++) {
+    cart.push(getRandomItem());
+  }
+  return cart;
+};
 
 const CartApi = {
 
@@ -33,25 +53,6 @@ const CartApi = {
     return cartWithNewItem;
   }
 
-};
-
-const getRandomInt = (max) => {
-  return Math.floor(Math.random() * max);
-};
-
-const getRandomItem = () => {
-  return productConstructors.bed({
-    size: bedSizes[getRandomInt(bedSizes.length)],
-    color: bedColors[getRandomInt(bedColors.length)]
-  });
-};
-
-const getCartOfSize = (size) => {
-  let cart = [];
-  for (let i = 0; i < size; i++) {
-    cart.push(getRandomItem());
-  }
-  return cart;
 };
 
 export default CartApi;

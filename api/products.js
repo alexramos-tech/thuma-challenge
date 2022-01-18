@@ -1,12 +1,7 @@
 const sizes = ["twin", "full", "queen", "king", "cali-king"];
 const colors = ["walnut", "natural"];
 
-export const variationChoices = {
-  color: colors,
-  size: sizes
-};
-
-function makeBed({ color, size }) {
+const makeBed = ({ color, size }) => {
   return {
     name: "bed",
     variation: {
@@ -14,36 +9,47 @@ function makeBed({ color, size }) {
       size
     }
   };
-}
+};
 
-function makeMattress({ size }) {
+const makeMattress = ({ size }) => {
   return {
     name: "mattress",
     variation: {
       size
     }
   };
-}
+};
 
-function makeNightstand({ color }) {
+const makeNightstand = ({ color }) => {
   return {
     name: "nightstand",
     variation: {
       color
     }
   };
-}
-
-export const products = ["bed", "mattress", "nightstand"];
-
-export const productConstructors = {
-  bed: makeBed,
-  mattress: makeMattress,
-  nightstand: makeNightstand
 };
 
-export const productVariation = {
-  bed: ["color", "size"],
-  mattress: ["size"],
-  nightstand: ["color"]
+const ProductsApi = {
+  
+  products: ["bed", "mattress", "nightstand"],
+
+  productConstructors: {
+    bed: makeBed,
+    mattress: makeMattress,
+    nightstand: makeNightstand
+  },
+
+  productVariation: {
+    bed: ["color", "size"],
+    mattress: ["size"],
+    nightstand: ["color"]
+  },
+
+  variationChoices: {
+    color: colors,
+    size: sizes
+  }
+
 };
+
+export default ProductsApi;

@@ -1,12 +1,11 @@
 import { useMemo, useState } from "react";
-import {
-  productVariation,
-  products,
-  variationChoices
-} from "../../api/products";
+import ProductsApi from "../../api/products";
 import CartApi from "../../api/cart";
 
-function capitalize(string) {
+const { addItem  } = CartApi;
+const{ productVariation, variationChoices } = ProductsApi;
+
+const capitalize = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
@@ -28,7 +27,7 @@ export default function ProductPage({ handle, cart, setCart }) {
   }
 
   function addToCart() {
-    setCart(CartApi.addItem(cart, handle, chosenVariant));
+    setCart(addItem(cart, handle, chosenVariant));
   }
 
   return (
@@ -89,15 +88,16 @@ export default function ProductPage({ handle, cart, setCart }) {
   );
 }
 
-export async function getStaticProps({ params }) {
-  return { props: { ...params, key: params.handle } };
-}
+// unused
+// export async function getStaticProps({ params }) {
+//   return { props: { ...params, key: params.handle } };
+// }
 
-export async function getStaticPaths() {
-  return {
-    paths: products.map((handle) => ({
-      params: { handle }
-    })),
-    fallback: false
-  };
-}
+// export async function getStaticPaths() {
+//   return {
+//     paths: products.map((handle) => ({
+//       params: { handle }
+//     })),
+//     fallback: false
+//   };
+// }

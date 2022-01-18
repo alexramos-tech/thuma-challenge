@@ -1,6 +1,8 @@
 import Link from "next/link";
 import React from "react";
-import { products } from "../api/products";
+import ProductsApi from "../api/products";
+
+const { products } = ProductsApi;
 
 export default function Nav() {
   return (
