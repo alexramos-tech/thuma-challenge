@@ -19,15 +19,24 @@ export default function ProductPage({ handle, cart, setCart }) {
 
   const [chosenVariant, setChosenVariant] = useState({});
 
-  function onValueChange(attributeKey, attributeValue) {
+  const onValueChange = (attributeKey, attributeValue) => {
     setChosenVariant((oldVariant) => ({
       ...oldVariant,
       [attributeKey]: attributeValue
     }));
   }
 
-  function addToCart() {
+  const clearFormValues = (chosenVariant) => {
+    const attributeKeys = Object.keys(chosenVariant);
+    for (const key of attributeKeys) {
+      onValueChange(key, undefined)
+    }
+  }
+
+  const addToCart = (e) => {
+    e.preventDefault();
     setCart(addItem(cart, handle, chosenVariant));
+    clearFormValues(chosenVariant);
   }
 
   return (
@@ -36,45 +45,48 @@ export default function ProductPage({ handle, cart, setCart }) {
       <div style={{ textAlign: "center" }}>
         <img src="https://via.placeholder.com/300x200" alt="placeholder" />
       </div>
-      <div style={{ display: "flex", justifyContent: "space-evenly" }}>
-        {Object.keys(attributes).map((attributeKey) => {
-          const attributeValuePicker = attributes[attributeKey].map(
-            (attributeValue) => (
-              <label key={attributeValue} style={{ lineHeight: 2 }}>
-                <input
-                  checked={chosenVariant[attributeKey] === attributeValue}
-                  type="radio"
-                  name={attributeKey}
-                  value={attributeValue}
-                  onChange={(e) => onValueChange(attributeKey, e.target.value)}
-                />
-                {attributeValue}
-              </label>
-            )
-          );
-          return (
-            <div key={attributeKey}>
-              <h2
-                style={{
-                  textAlign: "center",
-                  textTransform: "capitalize",
-                  textDecoration: "underline"
-                }}
-              >
-                {attributeKey}
-              </h2>
-              <div style={{ display: "flex", flexDirection: "column" }}>
-                {attributeValuePicker}
-              </div>
-            </div>
-          );
-        })}
+      <form onSubmit={addToCart}>
+        <div style={{ display: "flex", justifyContent: "space-evenly" }}>
+            {Object.keys(attributes).map((attributeKey) => {
+              const attributeValuePicker = attributes[attributeKey].map(
+                (attributeValue) => (
+                  <label key={attributeValue} style={{ lineHeight: 2 }}>
+                    <input
+                      required={true}
+                      checked={chosenVariant[attributeKey] === attributeValue}
+                      type="radio"
+                      name={attributeKey}
+                      value={attributeValue}
+                      onChange={(e) => onValueChange(attributeKey, e.target.value)}
+                    />
+                    {attributeValue}
+                  </label>
+                )
+              );
+              return (
+                <div key={attributeKey}>
+                  <h2
+                    style={{
+                      textAlign: "center",
+                      textTransform: "capitalize",
+                      textDecoration: "underline"
+                    }}
+                  >
+                    {attributeKey}
+                  </h2>
+                  <div style={{ display: "flex", flexDirection: "column" }}>
+                    {attributeValuePicker}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          <div style={{ textAlign: "center", marginTop: "2em" }}>
+            <button type="submit">
+              Add To Cart
+            </button>
         </div>
-        <div style={{ textAlign: "center", marginTop: "2em" }}>
-          <button onClick={() => addToCart()}>
-            Add To Cart
-          </button>
-      </div>
+      </form>
     </>
   );
 }
