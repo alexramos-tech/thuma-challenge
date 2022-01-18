@@ -4,7 +4,7 @@ import {
   products,
   variationChoices
 } from "../../api/products";
-import { addItem } from "../../api/cart";
+import CartApi from "../../api/cart";
 
 function capitalize(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -28,7 +28,7 @@ export default function ProductPage({ handle, cart, setCart }) {
   }
 
   function addToCart() {
-    setCart(addItem(cart, handle, chosenVariant));
+    setCart(CartApi.addItem(cart, handle, chosenVariant));
   }
 
   return (

@@ -1,11 +1,11 @@
-import { getCartOfSize } from "../api/cart";
+import CartApi from "../api/cart";
 import CartDebug from "../components/CartDebug";
 import Nav from "../components/Nav";
 import CartContext from "../contexts/CartContext";
 import { useSessionStorageCart } from "../hooks/useSessionStorageCart";
 
 export default function MyApp({ Component, pageProps }) {
-  const [cart, setCart] = useSessionStorageCart(getCartOfSize(2));
+  const [cart, setCart] = useSessionStorageCart(CartApi.getCart(2));
   return (
     <div style={{ fontFamily: "sans-serif" }}>
       <CartContext.Provider value={{ cart, setCart }}>

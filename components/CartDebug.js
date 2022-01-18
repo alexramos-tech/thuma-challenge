@@ -1,4 +1,4 @@
-import { getRandomCart, removeItem } from "../api/cart";
+import CartApi from "../api/cart";
 import CloseButton from "./CloseButton";
 
 export default function CartDebug({ cart, setCart }) {
@@ -32,7 +32,7 @@ export default function CartDebug({ cart, setCart }) {
                 {`${cartItem.name} -- ${Object.keys(cartItem.variation)
                   .map((key) => cartItem.variation[key])
                   .join(" + ")} `}
-                <CloseButton onClick={() => setCart(removeItem(cart, index))} />      
+                <CloseButton onClick={() => setCart(CartApi.removeItem(cart, index))} />      
               </div>
             </li>
           ))
@@ -48,7 +48,7 @@ export default function CartDebug({ cart, setCart }) {
             border: "1px solid gray",
             cursor: "pointer"
           }}
-          onClick={() => setCart(getRandomCart())}
+          onClick={() => setCart(CartApi.getRandomCart())}
         >
           Random Cart
           <span role="img" aria-label="randomize cart">
