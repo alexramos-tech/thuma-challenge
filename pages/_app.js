@@ -1,3 +1,4 @@
+import "../styles.css";
 import CartApi from "../api/cart";
 import CartDebug from "../components/CartDebug";
 import Nav from "../components/Nav";

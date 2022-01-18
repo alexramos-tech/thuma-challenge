@@ -5,26 +5,9 @@ const { removeItem, getRandomCart } = CartApi;
 
 export default function CartDebug({ cart, setCart }) {
   return (
-    <div
-      style={{
-        position: "absolute",
-        background: "white",
-        right: 0,
-        border: "1px solid",
-        borderRight: 0,
-        padding: "1em",
-        minWidth: "17em"
-      }}
-    >
+    <div className="cart-container">
       <p>Your Cart</p>
-      <ul
-        suppressHydrationWarning
-        style={{
-          display: "inline-block",
-          padding: "1em 2em",
-          margin: 0
-        }}
-      >
+      <ul suppressHydrationWarning className="cart-list">
         {cart.length === 0 ? (
           <li suppressHydrationWarning>The Cart is Empty</li>
         ) : (
@@ -43,15 +26,7 @@ export default function CartDebug({ cart, setCart }) {
       <br />
       <br />
       <div style={{ textAlign: "center" }}>
-        <button
-          style={{
-            background: "transparent",
-            padding: "1em 2em",
-            border: "1px solid gray",
-            cursor: "pointer"
-          }}
-          onClick={() => setCart(getRandomCart())}
-        >
+        <button onClick={() => setCart(getRandomCart())}>
           Random Cart
           <span role="img" aria-label="randomize cart">
             ♻️

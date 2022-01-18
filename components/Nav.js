@@ -7,7 +7,7 @@ const { products } = ProductsApi;
 export default function Nav() {
   return (
     <>
-      <nav style={{ display: "flex", justifyContent: "space-around" }}>
+      <nav>
         <Link href="/">Cart</Link>
         {products.map((product) => (
           <Link key={product} href={`/products/${product}`} passHref>

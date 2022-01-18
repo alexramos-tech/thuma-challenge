@@ -3,7 +3,7 @@ import ProductsApi from "../../api/products";
 import CartApi from "../../api/cart";
 
 const { addItem  } = CartApi;
-const{ productVariation, variationChoices } = ProductsApi;
+const{ products, productVariation, variationChoices } = ProductsApi;
 
 const capitalize = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -42,7 +42,6 @@ export default function ProductPage({ handle, cart, setCart }) {
             (attributeValue) => (
               <label key={attributeValue} style={{ lineHeight: 2 }}>
                 <input
-                  style={{cursor: 'pointer'}}
                   checked={chosenVariant[attributeKey] === attributeValue}
                   type="radio"
                   name={attributeKey}
@@ -72,15 +71,7 @@ export default function ProductPage({ handle, cart, setCart }) {
         })}
         </div>
         <div style={{ textAlign: "center", marginTop: "2em" }}>
-          <button
-            onClick={() => addToCart()}
-            style={{
-              background: "transparent",
-              padding: "1em 2em",
-              border: "1px solid gray",
-              cursor: "pointer"
-            }}
-          >
+          <button onClick={() => addToCart()}>
             Add To Cart
           </button>
       </div>
@@ -88,16 +79,15 @@ export default function ProductPage({ handle, cart, setCart }) {
   );
 }
 
-// unused
-// export async function getStaticProps({ params }) {
-//   return { props: { ...params, key: params.handle } };
-// }
+export const getStaticProps = async ({ params }) => {
+  return { props: { ...params, key: params.handle } };
+};
 
-// export async function getStaticPaths() {
-//   return {
-//     paths: products.map((handle) => ({
-//       params: { handle }
-//     })),
-//     fallback: false
-//   };
-// }
+export const getStaticPaths = async () => {
+  return {
+    paths: products.map((handle) => ({
+      params: { handle }
+    })),
+    fallback: false
+  };
+};

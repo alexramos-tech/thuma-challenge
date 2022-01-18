@@ -1,0 +1,31 @@
+button {
+    cursor: pointer;
+    border: 1px solid gray;
+    background: transparent;
+    padding: 1em 2em;
+}
+
+input[type=radio] {
+    cursor: pointer;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+}
+
+.cart-container {
+    position: absolute;
+    background: white;
+    right: 0;
+    border: 1px solid;
+    border-right: 0;
+    padding: 1em;
+    min-width: 17em;
+}
+
+.cart-list {
+    display: inline-block;
+    padding: 1em 2em;
+    margin: 0;
+}
