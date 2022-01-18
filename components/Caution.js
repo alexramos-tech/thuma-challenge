@@ -1,4 +1,4 @@
-export default function Caution({ message }) {
+const Caution = ({ message }) => {
   return (
     <>
       {/* eslint-disable-next-line */}
@@ -9,4 +9,6 @@ export default function Caution({ message }) {
       </span>
     </>
   );
-}
+};
+
+export default Caution;

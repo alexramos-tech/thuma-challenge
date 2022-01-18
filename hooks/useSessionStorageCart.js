@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function useSessionStorageCart(initialCart) {
+const useSessionStorageCart = (initialCart) => {
   const [cart, innerSetCart] = useState(() => {
     try {
       const storedCart = window.sessionStorage.getItem("cart");
@@ -10,7 +10,7 @@ export function useSessionStorageCart(initialCart) {
     }
   });
 
-  function setCart(newCart) {
+  const setCart = (newCart) => {
     const newCartValue = newCart instanceof Function ? newCart(cart) : newCart;
     innerSetCart(newCartValue);
     try {
@@ -19,4 +19,6 @@ export function useSessionStorageCart(initialCart) {
   }
 
   return [cart, setCart];
-}
+};
+
+export { useSessionStorageCart };

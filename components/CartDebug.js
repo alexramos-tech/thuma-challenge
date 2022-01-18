@@ -3,7 +3,7 @@ import CloseButton from "./CloseButton";
 
 const { removeItem, getRandomCart } = CartApi;
 
-export default function CartDebug({ cart, setCart }) {
+const CartDebug = ({ cart, setCart }) => {
   return (
     <div className="cart-container">
       <p>Your Cart</p>
@@ -35,4 +35,6 @@ export default function CartDebug({ cart, setCart }) {
       </div>
     </div>
   );
-}
+};
+
+export default CartDebug;

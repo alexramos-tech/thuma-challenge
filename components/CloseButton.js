@@ -1,4 +1,4 @@
-export default function CloseButton({ onClick }) {
+const CloseButton = ({ onClick }) => {
   return (
     <button onClick={onClick} style={{ border: 0 }}>
       <span role="img" aria-label={`remove item link`}>
@@ -7,3 +7,5 @@ export default function CloseButton({ onClick }) {
     </button>
   );
 }
+
+export default CloseButton;

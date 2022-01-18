@@ -7,7 +7,7 @@ import { useSessionStorageCart } from "../hooks/useSessionStorageCart";
 
 const { getCart } = CartApi;
 
-export default function MyApp({ Component, pageProps }) {
+const MyApp = ({ Component, pageProps }) => {
   const [cart, setCart] = useSessionStorageCart(getCart(2));
   return (
     <div style={{ fontFamily: "sans-serif" }}>
@@ -20,4 +20,6 @@ export default function MyApp({ Component, pageProps }) {
       </CartContext.Provider>
     </div>
   );
-}
+};
+
+export default MyApp;

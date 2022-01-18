@@ -4,7 +4,7 @@ import ProductsApi from "../api/products";
 
 const { products } = ProductsApi;
 
-export default function Nav() {
+const Nav = () => {
   return (
     <>
       <nav>
@@ -20,4 +20,6 @@ export default function Nav() {
       <hr />
     </>
   );
-}
+};
+
+export default Nav;

@@ -9,7 +9,7 @@ const capitalize = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-export default function ProductPage({ handle, cart, setCart }) {
+const ProductPage = ({ handle, cart, setCart }) => {
   const attributes = useMemo(() => {
     return productVariation[handle].reduce((acc, variationKey) => {
       acc[variationKey] = variationChoices[variationKey];
@@ -89,7 +89,9 @@ export default function ProductPage({ handle, cart, setCart }) {
       </form>
     </>
   );
-}
+};
+
+export default ProductPage;
 
 export const getStaticProps = async ({ params }) => {
   return { props: { ...params, key: params.handle } };
